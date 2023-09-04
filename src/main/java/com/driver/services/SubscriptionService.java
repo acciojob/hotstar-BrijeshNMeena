@@ -96,14 +96,14 @@ public class SubscriptionService {
         //Hint is to use findAll function from the SubscriptionDb
 
         List<Subscription> subscriptionList = subscriptionRepository.findAll();
-        int revenue = 0;
+        Integer revenue = 0;
 
 
-        if(subscriptionList.size() > 0){
+       // if(subscriptionList.size() > 0){
             for (Subscription subscription : subscriptionList) {
                 revenue += subscription.getTotalAmountPaid();
             }
-        }
+      //  }
 
         return revenue;
     }
