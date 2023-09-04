@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("subscription")
 public class SubscriptionController {
 
-    //@Autowired
-    SubscriptionService subscriptionService = new SubscriptionService();
+    @Autowired
+    SubscriptionService subscriptionService;
 
     @PostMapping("/buy")
     public Integer buySubscription(@RequestBody SubscriptionEntryDto subscriptionEntryDto){

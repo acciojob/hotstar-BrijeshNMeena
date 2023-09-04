@@ -38,21 +38,21 @@ public class SubscriptionService {
 
         int amount = 0;
         if(subscriptionType.equals(SubscriptionType.BASIC))
-            amount = 500 + 200 * screens;
+            amount = 500 + (200 * screens);
         else if(subscriptionType.equals(SubscriptionType.PRO))
-            amount = 800 + 250 * screens;
+            amount = 800 + (250 * screens);
         else
-            amount = 1000 + 350 * screens;
+            amount = 1000 + (350 * screens);
 
         Subscription subscription = new Subscription(subscriptionType, screens, date, amount);
         User user = userRepository.findById(userId).get();
         subscription.setUser(user);
 
-        Subscription savedSubscription = subscriptionRepository.save(subscription);
-        user.setSubscription(savedSubscription);
-        userRepository.save(user);
+       // Subscription savedSubscription = subscriptionRepository.save(subscription);
+        user.setSubscription(subscription);
+        //userRepository.save(user);
 
-        return savedSubscription.getTotalAmountPaid();
+        return subscription.getTotalAmountPaid();
     }
 
     public Integer upgradeSubscription(Integer userId)throws Exception{
@@ -68,16 +68,16 @@ public class SubscriptionService {
         Subscription subscription = user.getSubscription();
         SubscriptionType subs = subscription.getSubscriptionType();
 
-        int extraAmount = 0;
+        Integer extraAmount = 0;
 
         if(subs.equals(SubscriptionType.BASIC)){
             subscription.setSubscriptionType(SubscriptionType.PRO);
-            extraAmount = 300 + 50 * subscription.getNoOfScreensSubscribed();
+            extraAmount = 300 + (50 * subscription.getNoOfScreensSubscribed());
             subscription.setTotalAmountPaid(subscription.getTotalAmountPaid() + extraAmount);
 
         } else if (subs.equals(SubscriptionType.PRO)) {
             subscription.setSubscriptionType(SubscriptionType.ELITE);
-            extraAmount = 200 + 100 * subscription.getNoOfScreensSubscribed();
+            extraAmount = 200 + (100 * subscription.getNoOfScreensSubscribed());
             subscription.setTotalAmountPaid(subscription.getTotalAmountPaid() + extraAmount);
 
         } else {
@@ -86,7 +86,7 @@ public class SubscriptionService {
         }
 
         user.setSubscription(subscription);
-        userRepository.save(user);
+        subscriptionRepository.save(subscription);
         return extraAmount;
     }
 
@@ -96,7 +96,7 @@ public class SubscriptionService {
         //Hint is to use findAll function from the SubscriptionDb
 
         List<Subscription> subscriptionList = subscriptionRepository.findAll();
-        int revenue = 0;
+        Integer revenue = 0;
 
 
         if(subscriptionList.size() > 0){

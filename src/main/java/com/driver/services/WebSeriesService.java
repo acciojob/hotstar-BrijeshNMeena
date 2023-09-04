@@ -43,7 +43,11 @@ public class WebSeriesService {
         webSeries.setSubscriptionType(webSeriesEntryDto.getSubscriptionType());
 
         int productionHouseId = webSeriesEntryDto.getProductionHouseId();
-        ProductionHouse productionHouse = productionHouseRepository.findById(productionHouseId).get();
+        Optional<ProductionHouse> opProductionHouse = productionHouseRepository.findById(productionHouseId);
+        if(!opProductionHouse.isPresent()) {
+            throw new Exception("Production house is not found");
+        }
+        ProductionHouse productionHouse = opProductionHouse.get();
         webSeries.setProductionHouse(productionHouse);
 
         WebSeries  savedWebSeries = webSeriesRepository.save(webSeries);
@@ -59,9 +63,9 @@ public class WebSeriesService {
         productionHouse.setRatings(rating);
 
         productionHouseRepository.save(productionHouse);
-        WebSeries webSeries1 = webSeriesRepository.save(webSeries);
+        //WebSeries webSeries1 = webSeriesRepository.save(webSeries);
 
-        return webSeries1.getId();
+        return webSeries.getId();
     }
 
 }
