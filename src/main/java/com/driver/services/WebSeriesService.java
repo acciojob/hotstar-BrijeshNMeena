@@ -44,18 +44,19 @@ public class WebSeriesService {
         WebSeries  savedWebSeries = webSeriesRepository.save(webSeries);
         productionHouse.getWebSeriesList().add(savedWebSeries);
 
-        double rating = 0;
+        double rating = 0.0;
         List<WebSeries> webSeriesList = productionHouse.getWebSeriesList();
         for(WebSeries ws : webSeriesList) {
             rating += ws.getRating();
         }
 
-        rating /= webSeriesList.size();
+        rating = rating/(double)webSeriesList.size();
         productionHouse.setRatings(rating);
 
         productionHouseRepository.save(productionHouse);
+        WebSeries webSeries1 = webSeriesRepository.save(webSeries);
 
-        return 0;
+        return webSeries1.getId();
     }
 
 }
