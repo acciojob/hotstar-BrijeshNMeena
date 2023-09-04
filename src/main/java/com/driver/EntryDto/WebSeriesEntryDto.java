@@ -20,6 +20,10 @@ public class WebSeriesEntryDto {
 
     private Integer productionHouseId;
 
+    private WebSeriesEntryDto() {
+
+    }
+
     public WebSeriesEntryDto(String seriesName, int ageLimit, double rating, SubscriptionType subscriptionType, Integer productionHouseId) {
         this.ageLimit = ageLimit;
         this.seriesName = seriesName;
