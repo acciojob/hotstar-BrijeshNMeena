@@ -62,8 +62,8 @@ public class SubscriptionService {
         //update the subscription in the repository
 
         Optional<User> optionalUser = userRepository.findById(userId);
-        if(!optionalUser.isPresent())
-            return -1;
+//        if(!optionalUser.isPresent())
+//            return -1;
         User user = optionalUser.get();
         Subscription subscription = user.getSubscription();
         SubscriptionType subs = subscription.getSubscriptionType();
@@ -99,11 +99,11 @@ public class SubscriptionService {
         Integer revenue = 0;
 
 
-       // if(subscriptionList.size() > 0){
+        if(subscriptionList.size() > 0){
             for (Subscription subscription : subscriptionList) {
                 revenue += subscription.getTotalAmountPaid();
             }
-      //  }
+        }
 
         return revenue;
     }
