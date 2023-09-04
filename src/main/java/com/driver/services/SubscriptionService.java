@@ -62,12 +62,11 @@ public class SubscriptionService {
         //update the subscription in the repository
 
         Optional<User> optionalUser = userRepository.findById(userId);
-//        if(!optionalUser.isPresent())
-//            return -1;
+        if(!optionalUser.isPresent())
+            return -1;
         User user = optionalUser.get();
         Subscription subscription = user.getSubscription();
         SubscriptionType subs = subscription.getSubscriptionType();
-        //kya h
 
 
         Integer extraAmount = 0;
