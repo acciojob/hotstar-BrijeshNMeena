@@ -96,7 +96,7 @@ public class SubscriptionService {
         //Hint is to use findAll function from the SubscriptionDb
 
         List<Subscription> subscriptionList = subscriptionRepository.findAll();
-        Integer revenue = 0;
+        int revenue = 0;
 
 
         if(subscriptionList.size() > 0){
