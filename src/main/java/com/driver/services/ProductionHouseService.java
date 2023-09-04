@@ -17,11 +17,11 @@ public class ProductionHouseService {
 
         String name = productionHouseEntryDto.getName();
         ProductionHouse productionHouse = new ProductionHouse(name);
-        productionHouse.setRatings(0.0);
+        productionHouse.setRatings(0);
 
 
         ProductionHouse savedProductionHouse = productionHouseRepository.save(productionHouse);
-        return (int)savedProductionHouse.getRatings();
+        return savedProductionHouse.getId();
     }
 
 
