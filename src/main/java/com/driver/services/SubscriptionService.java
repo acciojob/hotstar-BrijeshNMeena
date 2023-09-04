@@ -9,16 +9,141 @@ import com.driver.model.WebSeries;
 import com.driver.repository.SubscriptionRepository;
 import com.driver.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SubscriptionService {
 
-    @Autowired
-    SubscriptionRepository subscriptionRepository;
+    //@Autowired
+    SubscriptionRepository subscriptionRepository = new SubscriptionRepository() {
+        @Override
+        public List<Subscription> findAll() {
+            return null;
+        }
+
+        @Override
+        public List<Subscription> findAll(Sort sort) {
+            return null;
+        }
+
+        @Override
+        public List<Subscription> findAllById(Iterable<Integer> iterable) {
+            return null;
+        }
+
+        @Override
+        public <S extends Subscription> List<S> saveAll(Iterable<S> iterable) {
+            return null;
+        }
+
+        @Override
+        public void flush() {
+
+        }
+
+        @Override
+        public <S extends Subscription> S saveAndFlush(S s) {
+            return null;
+        }
+
+        @Override
+        public void deleteInBatch(Iterable<Subscription> iterable) {
+
+        }
+
+        @Override
+        public void deleteAllInBatch() {
+
+        }
+
+        @Override
+        public Subscription getOne(Integer integer) {
+            return null;
+        }
+
+        @Override
+        public <S extends Subscription> List<S> findAll(Example<S> example) {
+            return null;
+        }
+
+        @Override
+        public <S extends Subscription> List<S> findAll(Example<S> example, Sort sort) {
+            return null;
+        }
+
+        @Override
+        public Page<Subscription> findAll(Pageable pageable) {
+            return null;
+        }
+
+        @Override
+        public <S extends Subscription> S save(S s) {
+            return null;
+        }
+
+        @Override
+        public Optional<Subscription> findById(Integer integer) {
+            return Optional.empty();
+        }
+
+        @Override
+        public boolean existsById(Integer integer) {
+            return false;
+        }
+
+        @Override
+        public long count() {
+            return 0;
+        }
+
+        @Override
+        public void deleteById(Integer integer) {
+
+        }
+
+        @Override
+        public void delete(Subscription subscription) {
+
+        }
+
+        @Override
+        public void deleteAll(Iterable<? extends Subscription> iterable) {
+
+        }
+
+        @Override
+        public void deleteAll() {
+
+        }
+
+        @Override
+        public <S extends Subscription> Optional<S> findOne(Example<S> example) {
+            return Optional.empty();
+        }
+
+        @Override
+        public <S extends Subscription> Page<S> findAll(Example<S> example, Pageable pageable) {
+            return null;
+        }
+
+        @Override
+        public <S extends Subscription> long count(Example<S> example) {
+            return 0;
+        }
+
+        @Override
+        public <S extends Subscription> boolean exists(Example<S> example) {
+            return false;
+        }
+    };
 
     @Autowired
     UserRepository userRepository;
@@ -90,8 +215,11 @@ public class SubscriptionService {
         List<Subscription> subscriptionList = subscriptionRepository.findAll();
         int revenue = 0;
 
-        for(Subscription subscription : subscriptionList) {
-            revenue += subscription.getTotalAmountPaid();
+
+        if(subscriptionList.size() > 0){
+            for (Subscription subscription : subscriptionList) {
+                revenue += subscription.getTotalAmountPaid();
+            }
         }
 
         return revenue;
