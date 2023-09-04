@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table
+@Table(name="subscription")
 public class Subscription {
 
     @Id
@@ -30,6 +30,10 @@ public class Subscription {
     @JoinColumn
     private User user;
 
+    public Subscription() {
+
+    }
+
     public Subscription(SubscriptionType subscriptionType, int noOfScreensSubscribed, Date startSubscriptionDate, int totalAmountPaid) {
         this.subscriptionType = subscriptionType;
         this.noOfScreensSubscribed = noOfScreensSubscribed;
@@ -37,9 +41,7 @@ public class Subscription {
         this.totalAmountPaid = totalAmountPaid;
     }
 
-    public Subscription() {
 
-    }
 
     public int getId() {
         return id;

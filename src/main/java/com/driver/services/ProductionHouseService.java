@@ -21,7 +21,7 @@ public class ProductionHouseService {
 
 
         ProductionHouse savedProductionHouse = productionHouseRepository.save(productionHouse);
-        return 0;
+        return (int)savedProductionHouse.getRatings();
     }
 
 

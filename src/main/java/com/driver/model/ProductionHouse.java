@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name="production_house")
 public class ProductionHouse {
 
     @Id
@@ -20,13 +20,15 @@ public class ProductionHouse {
     @OneToMany(mappedBy = "productionHouse",cascade = CascadeType.ALL)
     private List<WebSeries> webSeriesList;
 
+    public ProductionHouse() {
+    }
+
     public ProductionHouse(String name) {
         this.name = name;
         this.webSeriesList = new ArrayList<>();
     }
 
-    public ProductionHouse() {
-    }
+
 
     public int getId() {
         return id;

@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name="web_series")
 public class WebSeries {
 
     @Id
@@ -31,6 +31,10 @@ public class WebSeries {
     @JoinColumn
     private ProductionHouse productionHouse;
 
+    public WebSeries() {
+
+    }
+
     public WebSeries(String seriesName, int ageLimit, double rating, SubscriptionType subscriptionType) {
         this.seriesName = seriesName;
         this.ageLimit = ageLimit;
@@ -38,9 +42,7 @@ public class WebSeries {
         this.subscriptionType = subscriptionType;
     }
 
-    public WebSeries() {
 
-    }
 
     public int getId() {
         return id;
